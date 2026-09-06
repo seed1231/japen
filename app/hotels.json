@@ -1,0 +1,4 @@
+[
+ {"id":"hotel-kyoto","name":"京阪京都車站南飯店","english":"HOTEL KEIHAN KYOTO EKIMINAMI","dates":"09.11 入住 — 09.14 退房","nights":"京都 · 3 晚","description":"前三晚以京都為據點，往返琵琶湖與海之京都。9/14 退房後寄放行李，嵐山、宇治行程結束再回飯店取行李，移動到大阪。","official":"https://www.hotelkeihan.co.jp/kyoto-e/","images":[{"src":"/images/keihan-exterior.jpg","alt":"京阪京都車站南飯店官方外觀照片，入口可見 KYOTO EKIMINAMI 招牌","width":800,"height":533},{"src":"/images/keihan-twin.jpg","alt":"京阪京都車站南飯店官方標準雙床客房示意","width":800,"height":472}]},
+ {"id":"hotel-osaka","name":"KOKO HOTEL 大阪難波千日前","english":"KOKO HOTEL Osaka Namba Sennichimae","dates":"09.14 入住 — 09.16 退房","nights":"大阪 · 2 晚","description":"後兩晚住在難波千日前，方便分組前往 USJ 與京都奈良一日團。9/16 早上退房並寄放行李，午後回飯店取件，最晚 15:15 帶行李出發。","official":"https://www.koko-hotels.com/osaka_sennichimae/","images":[{"src":"/images/koko-exterior.webp","alt":"KOKO HOTEL 大阪難波千日前官方飯店外觀","width":1920,"height":1280},{"src":"/images/koko-twin.webp","alt":"KOKO HOTEL 大阪難波千日前官方標準雙床客房示意","width":1920,"height":1280}]}
+]
