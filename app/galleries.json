@@ -1,0 +1,100 @@
+{
+  "1": [
+    {
+      "name": "kyoto-station-night",
+      "title": "京都車站",
+      "description": "抵達古都的第一站。沿八條口前往京阪京都車站南飯店，先把今晚安頓好。",
+      "width": 1400,
+      "height": 933
+    }
+  ],
+  "2": [
+    {
+      "name": "shirahige",
+      "title": "白鬚神社・水上鳥居",
+      "description": "騎車前往琵琶湖畔，在安全區域欣賞鳥居與湖光；09:50 準時離開。",
+      "width": 1200,
+      "height": 794
+    }
+  ],
+  "3": [
+    {
+      "name": "amanohashidate",
+      "title": "天橋立",
+      "description": "搭觀光船到一之宮，再乘纜車登高，從展望台欣賞海灣與松林。",
+      "width": 2200,
+      "height": 1091
+    },
+    {
+      "name": "ine",
+      "title": "伊根舟屋",
+      "description": "沿舟屋水岸散步，搭伊根灣遊覽船，留一段時間在海邊吃午餐。",
+      "width": 1400,
+      "height": 933
+    }
+  ],
+  "4": [
+    {
+      "name": "arashiyama",
+      "title": "嵐山竹林",
+      "description": "07:35 走進竹林小徑，接著散步天龍寺庭園與渡月橋。",
+      "width": 1200,
+      "height": 800
+    },
+    {
+      "name": "byodoin",
+      "title": "宇治・平等院",
+      "description": "午後走訪庭園與鳳翔館，再到宇治川畔散步；中村藤吉為主要抹茶採買點。",
+      "width": 1400,
+      "height": 933
+    }
+  ],
+  "5a": [
+    {
+      "name": "usj-main",
+      "title": "日本環球影城",
+      "description": "任天堂世界、哈利波特與電影主題設施，夜晚接續航海王 Premier Show。",
+      "width": 1600,
+      "height": 900
+    }
+  ],
+  "5b": [
+    {
+      "name": "kiyomizu",
+      "title": "清水寺",
+      "description": "京都古寺、二年坂與三年坂，為一日團展開古都風景。 照片為秋季景色示意，9 月植被色彩依當日實況。",
+      "width": 1400,
+      "height": 1005
+    },
+    {
+      "name": "fushimi-inari-torii",
+      "title": "伏見稻荷大社",
+      "description": "跟著一日團穿行朱紅鳥居之間，實際停留與順序依導遊安排。",
+      "width": 1400,
+      "height": 933
+    },
+    {
+      "name": "nara",
+      "title": "奈良公園",
+      "description": "午後在奈良公園與東大寺周邊漫遊，遇見古都裡的鹿。",
+      "width": 1400,
+      "height": 1050
+    }
+  ],
+  "6": [
+    {
+      "name": "arima-kin-no-yu",
+      "title": "有馬溫泉・金之湯",
+      "description": "以一場晨湯開啟旅程最後一天，再經老街步行前往六甲有馬纜車。",
+      "width": 1400,
+      "height": 933
+    },
+    {
+      "name": "rokko-garden-terrace",
+      "title": "六甲花園露台",
+      "description": "上山欣賞展望與六甲枝垂；11:20 準時離開，接上返回大阪的交通。",
+      "width": 1400,
+      "height": 937
+    }
+  ]
+}
