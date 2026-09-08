@@ -763,6 +763,12 @@ button {
   font-weight: bold;
   color: #829369;
 }
+.usj-rules .note p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: #52604c;
+}
 .source-conflict {
   padding: 18px 22px;
   background: #f7eee0;

@@ -47,9 +47,9 @@ const sections = [
   },
   {
     id: '4',
-    title: '嵐山・宇治',
-    route: '竹林・平等院・大阪',
-    mood: '竹葉與抹茶香',
+    title: '嵐山・宇治・四條',
+    route: '竹林・平等院・寶可夢中心',
+    mood: '竹葉、抹茶與限定採買',
   },
   {
     id: '5',
@@ -60,8 +60,8 @@ const sections = [
   {
     id: '6',
     title: '有馬・六甲',
-    route: '溫泉・山景・回程',
-    mood: '把山上的風帶回家',
+    route: '溫泉・山景・難波採買・回程',
+    mood: '山景與回程前採買',
   },
 ];
 const stops: Record<string, Record<number, string>> = {
@@ -84,21 +84,24 @@ const stops: Record<string, Record<number, string>> = {
     2: '嵐山竹林',
     3: '天龍寺庭園',
     4: '渡月橋',
-    8: '宇治抹茶採買',
-    10: '平等院',
-    11: '宇治川畔',
-    12: '宇治老街',
-    21: '大阪・入住',
+    9: '宇治抹茶採買',
+    11: '平等院',
+    12: '宇治川畔',
+    13: '宇治老街',
+    16: '京都寶可夢中心',
+    23: '大阪・入住',
   },
   '5a': {
-    5: '超級任天堂世界',
-    6: '哈利波特魔法世界',
-    7: '好萊塢美夢',
-    8: '舞台 18',
-    11: 'NO LIMIT! 遊行',
-    12: '鏈鋸人 4-D',
-    14: '水世界',
-    18: '航海王 Premier Show',
+    5: '先換航海王票券',
+    6: '超級任天堂世界',
+    7: '哈利波特魔法世界',
+    9: '芙莉蓮・舞台 18',
+    13: 'NO LIMIT! 遊行',
+    16: '水世界',
+    17: '鏈鋸人 4-D',
+    21: '航海王 Premier Show',
+    25: '萬聖驚魂夜學院',
+    26: '重現殭屍群舞',
   },
   '5b': {
     2: '日本橋集合',
@@ -110,8 +113,9 @@ const stops: Record<string, Record<number, string>> = {
     8: '金之湯晨湯',
     11: '六甲有馬纜車',
     12: '六甲花園露台',
-    22: '回程出發',
-    25: 'HARUKA 前往機場',
+    23: 'Bic Camera 難波店',
+    25: '回程出發',
+    28: 'HARUKA 前往機場',
   },
 };
 function EditorialTitle({ text }: { text: string }) {
@@ -137,7 +141,7 @@ const reservationSteps = [
   '選「繁體中文」→ 將實體 JR 周遊券插入標示 Ticket・Commuter Pass 的票券入口。多人同行可逐張插入，最多 4 人一起選座，再按「插入完畢」。',
   '按畫面左上「指定座席」→「使用回數票預訂指定座席」。',
   '依序輸入乘車日、出發站、抵達站及出發時間 → 搜尋 → 選指定車次 → 普通車指定席 → 從座位表選位 → 確認。',
-  '取回 JR 周遊券及印出的指定席券；確認日期、車次、區間、車廂、座位後，再插入周遊券辦下一段。共重複 4 次。',
+  '取回 JR 周遊券及印出的指定席券；確認日期、車次、區間、車廂、座位後，再插入周遊券辦下一段。共重複 3 次。',
 ];
 function Notes({ notes }: { notes: { title: string; items: string[] }[] }) {
   return (
@@ -251,7 +255,7 @@ function Day({ day }: { day: (typeof data.days)[number] }) {
             </div>
             {day.id === '1' && (
               <a className="text-link" href="#tickets">
-                查看領券與 4 段劃位指南 <ArrowUpRight size={17} />
+                查看領券與 3 段劃位指南 <ArrowUpRight size={17} />
               </a>
             )}
             {day.id === '5a' && (
@@ -261,8 +265,8 @@ function Day({ day }: { day: (typeof data.days)[number] }) {
             )}
             {day.id === '5b' && (
               <p className="small-note">
-                下車後由大阪近鐵日本橋，依地圖步行返回 KOKO HOTEL Osaka Namba
-                Sennichimae。
+                大阪近鐵日本橋下車後，以手機地圖搜尋 KOKO HOTEL Osaka Namba
+                Sennichimae，步行返回；核對千日前店名，避免走錯分店。
               </p>
             )}
           </div>
@@ -273,7 +277,7 @@ function Day({ day }: { day: (typeof data.days)[number] }) {
             <div>
               <strong>
                 {day.id === '5a'
-                  ? '場次狀態・依 PDF，仍待確認'
+                  ? '場次與換票'
                   : day.id === '5b'
                     ? '集合提醒'
                     : '今日重點與必守時間'}
@@ -281,20 +285,10 @@ function Day({ day }: { day: (typeof data.days)[number] }) {
               <p>{day.important}</p>
             </div>
           </div>
-          {day.id === '4' && (
-            <div className="source-conflict">
-              <strong>交通文字待確認</strong>
-              <p>
-                原 PDF
-                時刻表寫「環狀線內環」，下方「移動大阪」寫「外環往西九條／天王寺」，兩者不一致。以下保留原文；請以車站往西九條／天王寺方向指標及
-                JR 官方資訊確認。
-              </p>
-            </div>
-          )}
           {day.id === '5a' && (
             <p className="source-note">
-              遊行 13:00、水世界 15:45 暫依 9/11 場次；9/14 晚間再查 9/15 官方
-              App。標記「目標」的時段須配合號碼券調整。
+              場次依新版 PDF 的 9/15 官方查核；當日仍需開啟官方 App
+              確認停演、天候及人流管制。
             </p>
           )}
           <ol className="timeline">
@@ -321,38 +315,33 @@ function Day({ day }: { day: (typeof data.days)[number] }) {
             ))}
           </ol>
           <Notes notes={day.notes} />
-          {day.id === '3' && (
-            <p className="source-note">
-              劃位時點：PDF 第 2 頁安排 9/11 領券後立即劃位，第 4
-              頁另提醒前一晚劃位；若已在 9/11 完成，出發前確認並保管指定席券。
-            </p>
-          )}
           {day.id === '5a' && (
             <section id="usj-maps" className="usj-maps">
-              <p className="eyebrow">PARK ROUTE · 原 PDF 圖像</p>
-              <h3>把冒險，串成一條路線。</h3>
+              <p className="eyebrow">PARK MAP · 新版 PDF 圖像</p>
+              <h3>先看位置，再依票券安排。</h3>
               <p>
-                編號代表建議遊玩順序；實際封路、整理券與入場方向以官方 App
-                為準。珊瑚紅虛線只表示步行方向，不是精密導航。點選圖片可查看原尺寸。
+                編號只標示位置，不是固定遊玩順序；不畫路線連線。優先 2 → 3 → 4，
+                再依券安排 6／7；8 於 15:00 水世界及 18:15 航海王入場，須重訪。
+                點選圖片可查看原尺寸。
               </p>
               <figure>
                 <a
                   href="/images/usj-0.png"
                   target="_blank"
                   rel="noreferrer"
-                  aria-label="開啟 USJ 完整遊玩路線原圖"
+                  aria-label="開啟 USJ 園區位置原圖"
                 >
                   <Photo
                     src="/images/usj-0.png"
-                    alt="USJ 建議順序：入口、咚奇剛、瑪利歐賽車、哈利波特、好萊塢美夢、舞台18、鏈鋸人4-D、水世界與航海王"
+                    alt="USJ 園區位置圖，標示入口與本日八個主要設施位置"
                     width={1600}
                     height={1120}
                     loading="lazy"
                   />
                 </a>
                 <figcaption>
-                  1 入口 → 2 咚奇剛 → 3 瑪利歐賽車 → 4 哈利波特 → 5 好萊塢美夢 →
-                  6 舞台18 → 7 鏈鋸人4-D → 8 水世界／航海王
+                  分區圖為位置參考，圖中商店及其他設施不代表本日安排。表演管制、實際入口與臨時封路以官方
+                  App 及現場為準。
                 </figcaption>
               </figure>
               <div className="zone-maps">
@@ -392,6 +381,29 @@ function Day({ day }: { day: (typeof data.days)[number] }) {
                   </a>
                   <figcaption>本日主項目：哈利波特禁忌之旅</figcaption>
                 </figure>
+              </div>
+              <div className="notes-grid usj-rules">
+                <section className="note">
+                  <h4>單人通道</h4>
+                  <p>
+                    咚奇剛、瑪利歐賽車、禁忌之旅、好萊塢美夢正向。同行者分開坐；可能暫停、未必較快，不能取代任天堂區域入場券。
+                  </p>
+                </section>
+                <section className="note">
+                  <h4>App 取券</h4>
+                  <p>
+                    芙莉蓮原則使用設施號碼券，當日可能開放免券。前一張設施券的到場時段結束後，才可領下一張；不是固定等
+                    120 分鐘。任天堂區域券另依 App 辦理。
+                  </p>
+                </section>
+                <section className="note">
+                  <h4>22:00 後返飯店</h4>
+                  <p>
+                    Universal City → 西九條 →
+                    環狀線內回り（弁天町、天王寺方向）→ 今宮 → JR 難波 →
+                    步行飯店。離園前查末班接續，勿把 22:00 視為回到飯店時間。
+                  </p>
+                </section>
               </div>
             </section>
           )}
@@ -567,18 +579,18 @@ export default function Home() {
               </div>
               <div>
                 <span>9/13 · 丹後日</span>
-                <strong>07:32 → 20:15</strong>
+                <strong>07:32 → 19:28</strong>
                 <p>
                   城崎1號 07:32、纜車下巴士 11:23、伊根巴士 14:42、青松號
-                  18:00、綾部橋立10號 20:15。
+                  18:00、綾部普通列車 19:28。
                 </p>
               </div>
               <div>
                 <span>9/16 · 回程日</span>
                 <strong>15:47 HARUKA</strong>
                 <p>
-                  11:20 離開六甲枝垂、11:33 山上巴士、15:15
-                  帶行李離開飯店、15:47 天王寺出發。
+                  11:20 離開六甲枝垂、11:33 山上巴士、14:50 離開 Bic Camera、
+                  15:10 目標離開飯店、15:47 天王寺出發。
                 </p>
               </div>
             </div>
@@ -623,11 +635,11 @@ export default function Home() {
                   </ol>
                 </section>
               </div>
-              <h4>這趟請先劃好 4 段指定席</h4>
+              <h4>這趟請先劃好 3 段指定席</h4>
               <DataTable
                 headers={['順序／乘車日', '售票機搜尋內容']}
                 rows={data.reservations}
-                caption="四段免費指定席劃位資訊"
+                caption="三段免費指定席劃位資訊"
               />
               <div className="source-conflict">
                 <strong>找不到車次時</strong>
@@ -640,10 +652,10 @@ export default function Home() {
               <div className="staff-phrase">
                 <span>給站務員看</span>
                 <p lang="ja">
-                  関西ワイドエリアパスで、こちらの4列車の普通車指定席を予約したいです。追加料金なしの指定席券をお願いします。
+                  関西ワイドエリアパスで、こちらの3列車の普通車指定席を予約したいです。追加料金なしの指定席券をお願いします。
                 </p>
                 <small lang="ja">
-                  きのさき1号 ／ たんごリレー1号 ／ はしだて10号 ／ はるか37号
+                  きのさき1号 ／ たんごリレー1号 ／ はるか37号
                 </small>
               </div>
               <h4>沒有中文時｜日文畫面對照</h4>
@@ -655,13 +667,8 @@ export default function Home() {
               <div className="ticket-use">
                 <h4>票怎麼用</h4>
                 <p>
-                  普通、快速、新快速：只用周遊券進出閘門。指定席：攜帶周遊券及指定席券，依車廂座位入座，查票時出示兩張。9/11
+                  普通、快速、新快速：用周遊券進出閘門。指定席券另外保管，上車依指定座位入座，查票時出示。9/11
                   當晚 HARUKA 不在有效日內，須另外購票。
-                </p>
-                <p className="source-note">
-                  原 PDF 第 1 頁寫進站將兩張票一起插入，第 2
-                  頁寫進站只用周遊券；兩處說法不同。兩張票均須保管，閘門使用方式請依票面與
-                  JR 站務員指示確認。
                 </p>
               </div>
             </section>
@@ -679,15 +686,14 @@ export default function Home() {
                 caption="行程票券與成人費用"
               />
               <p className="source-note">
-                「已購」沿用原 PDF 標記。此為 PDF
-                所列票券與交通費，非全程總預算；機票、住宿、餐飲、USJ
-                與一日團等未列費用不另估算。
+                以上為成人預算參考，非本次訂單實付金額或總旅費；未含餐飲、住宿、USJ／一日團及其他未列門票。已購項目以訂單為準，未購票價於購買時確認。
               </p>
               <div className="no-purchase">
                 <Check size={20} />
                 <p>
-                  <strong>不需購買</strong>近江鐵道滿喫一日券、大阪 Metro
-                  一日券、阪神一日券及其他關西私鐵周遊券。
+                  <strong>不需購買</strong>
+                  依目前動線，不必另買近江鐵道滿喫一日券、大阪 Metro
+                  一日券或阪神一日券。
                 </p>
               </div>
             </section>
@@ -716,6 +722,11 @@ export default function Home() {
                   </a>
                 ))}
               </div>
+              <p className="source-note">
+                2026/9/8 校閱：已修正行程前後矛盾、步行轉乘緩衝與地圖，並查核
+                USJ
+                取券及單人通道規則。本次未逐班重新核驗全程鐵路與公車時刻；原列車班次、票價仍須於劃位／購票時確認，月台以現場電子看板為準。
+              </p>
             </section>
           </div>
         </section>
