@@ -15,7 +15,7 @@ if (!response.ok) throw new Error(`Unable to render ${sourceUrl}: ${response.sta
 
 const prefixPublicPaths = (value) => {
   let result = value;
-  for (const publicPath of ['/_next/', '/images/', '/kansai-itinerary-2026.pdf', '/favicon.svg']) {
+  for (const publicPath of ['/_next/', '/images/', '/kansai-itinerary-2026.pdf', '/kansai-rain-2026.pdf', '/rain/', '/favicon.svg']) {
     result = result.replaceAll(publicPath, `${basePath}${publicPath}`);
   }
   return result;
@@ -25,6 +25,10 @@ await rm(outputDir, { recursive: true, force: true });
 await mkdir(outputDir, { recursive: true });
 await cp(path.resolve('dist/client'), outputDir, { recursive: true });
 await writeFile(path.join(outputDir, 'index.html'), prefixPublicPaths(await response.text()));
+const rainResponse = await fetch(new URL('/rain/', sourceUrl));
+if (!rainResponse.ok) throw new Error(`Rain page failed: ${rainResponse.status}`);
+await mkdir(path.join(outputDir, 'rain'), { recursive: true });
+await writeFile(path.join(outputDir, 'rain/index.html'), prefixPublicPaths(await rainResponse.text()).replaceAll('href="/"', `href="${basePath}/index.html"`));
 
 for (const relativePath of ['_next/static']) {
   const directory = path.join(outputDir, relativePath);
